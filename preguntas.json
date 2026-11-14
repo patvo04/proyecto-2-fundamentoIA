@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "categoria": "Receta directa",
+    "pregunta": "¿Cómo hago el pico_hierro?",
+    "esperado_prolog": "[palo, hierro]"
+  },
+  {
+    "id": 2,
+    "categoria": "Receta directa",
+    "pregunta": "¿Cómo crafteo una antorcha?",
+    "esperado_prolog": "[palo, carbon]"
+  },
+  {
+    "id": 3,
+    "categoria": "Receta directa",
+    "pregunta": "¿Qué ingredientes directos lleva la mesa_crafteo?",
+    "esperado_prolog": "[madera]"
+  },
+  {
+    "id": 4,
+    "categoria": "Receta directa",
+    "pregunta": "¿Cómo hago un horno?",
+    "esperado_prolog": "[piedra]"
+  },
+  {
+    "id": 5,
+    "categoria": "Receta directa",
+    "pregunta": "¿Cómo crafteo la espada_diamante?",
+    "esperado_prolog": "[palo, diamante]"
+  },
+  {
+    "id": 6,
+    "categoria": "Utilidad",
+    "pregunta": "¿Para qué sirve el pico_diamante?",
+    "esperado_prolog": "minar_obsidiana"
+  },
+  {
+    "id": 7,
+    "categoria": "Utilidad",
+    "pregunta": "¿Para qué sirve el pico_hierro?",
+    "esperado_prolog": "minar_diamante"
+  },
+  {
+    "id": 8,
+    "categoria": "Utilidad",
+    "pregunta": "¿Qué acción cumple la pala_piedra?",
+    "esperado_prolog": "excavar_tierra_rapido"
+  },
+  {
+    "id": 9,
+    "categoria": "Utilidad",
+    "pregunta": "¿Para qué sirve el hacha_hierro?",
+    "esperado_prolog": "talar_madera_muy_rapido"
+  },
+  {
+    "id": 10,
+    "categoria": "Utilidad",
+    "pregunta": "¿Para qué sirve la azada_diamante?",
+    "esperado_prolog": "arar_tierra_maxima_durabilidad"
+  },
+  {
+    "id": 11,
+    "categoria": "Utilidad",
+    "pregunta": "¿Para qué sirve el horno?",
+    "esperado_prolog": "fundir_minerales"
+  },
+  {
+    "id": 12,
+    "categoria": "Inferencia recursiva",
+    "pregunta": "¿Qué necesito en total en la cadena de crafteo para hacha_madera?",
+    "esperado_prolog": "[madera, palo]"
+  },
+  {
+    "id": 13,
+    "categoria": "Inferencia recursiva",
+    "pregunta": "¿Qué materiales base y componentes requiere la antorcha?",
+    "esperado_prolog": "[carbon, madera, palo]"
+  },
+  {
+    "id": 14,
+    "categoria": "Inferencia recursiva",
+    "pregunta": "¿Qué necesito para construir pico_piedra considerando toda su cadena?",
+    "esperado_prolog": "[madera, palo, piedra]"
+  },
+  {
+    "id": 15,
+    "categoria": "Inferencia recursiva",
+    "pregunta": "¿Qué materiales requiere espada_diamante en toda su cadena de crafteo?",
+    "esperado_prolog": "[diamante, madera, palo]"
+  },
+  {
+    "id": 16,
+    "categoria": "Inferencia recursiva",
+    "pregunta": "¿Qué necesito para hacer un palo?",
+    "esperado_prolog": "[madera]"
+  },
+  {
+    "id": 17,
+    "categoria": "Fuera de dominio",
+    "pregunta": "¿Cómo hago un pico_oro?",
+    "esperado_prolog": "No encontrado / fuera de base de conocimiento"
+  },
+  {
+    "id": 18,
+    "categoria": "Fuera de dominio",
+    "pregunta": "¿Para qué sirve la armadura_diamante?",
+    "esperado_prolog": "No encontrado / fuera de base de conocimiento"
+  },
+  {
+    "id": 19,
+    "categoria": "Variación lingüística",
+    "pregunta": "Necesito saber qué hace una espada de piedra",
+    "esperado_prolog": "combatir_monstruos_mayor_dano"
+  },
+  {
+    "id": 20,
+    "categoria": "Clasificación",
+    "pregunta": "¿Es el hierro un material básico según la base de conocimiento?",
+    "esperado_prolog": "Sí (es_material_basico(hierro))"
+  }
+]

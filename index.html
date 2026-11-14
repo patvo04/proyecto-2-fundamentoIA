@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chatbot Minecraft - Prolog vs Gemini</title>
+<style>
+  body{font:16px system-ui,Arial;background:#f1f5f9;margin:0;color:#172033}
+  main{max-width:760px;margin:40px auto;background:white;padding:28px;border-radius:18px;box-shadow:0 5px 25px #0001}
+  label,select,textarea,button{display:block;width:100%;box-sizing:border-box;margin:12px 0}
+  textarea,select{border:1px solid #cbd5e1;border-radius:8px;padding:12px;font:inherit}
+  button{background:#166534;color:white;padding:12px;border:0;border-radius:8px;cursor:pointer}
+  button:disabled{opacity:.5}#historial{white-space:pre-wrap;min-height:130px;background:#f8fafc;padding:16px;border-radius:10px}
+  .mensaje{margin:10px 0;border-bottom:1px solid #e2e8f0;padding-bottom:12px}
+</style></head><body>
+<main><h1>Chatbot de crafteo Minecraft</h1>
+<p>Compara respuestas de reglas Prolog y del LLM Gemini.</p>
+<label for="motor">Motor de respuesta</label>
+<select id="motor"><option value="prolog">Prolog</option><option value="llm">Gemini (LLM)</option></select>
+<label for="pregunta">Pregunta</label>
+<textarea id="pregunta" rows="3" placeholder="¿Cómo hago el pico de hierro?"></textarea>
+<button id="enviar">Preguntar</button><h2>Conversación</h2><div id="historial" aria-live="polite"></div>
+</main><script>
+const boton = document.querySelector("#enviar");
+const historial = document.querySelector("#historial");
+
+boton.addEventListener("click", async () => {
+    const pregunta = document.querySelector("#pregunta").value.trim();
+    const motor = document.querySelector("#motor").value;
+
+    if (!pregunta) {
+        alert("Debes escribir una pregunta.");
+        return;
+    }
+    boton.disabled = true;
+    boton.textContent = "Consultando...";
+    try {
+        const respuesta = await fetch("/preguntar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                pregunta: pregunta,
+                motor: motor
+            })
+        });
+
+        const datos = await respuesta.json();
+
+        if (!respuesta.ok || datos.error) {
+            throw new Error(datos.error || "Error del servidor");
+        }
+
+        const mensaje = document.createElement("div");
+        const titulo = document.createElement("strong");
+        const texto = document.createElement("p");
+
+        titulo.textContent = motor === "prolog"
+            ? "Prolog:"
+            : "Gemini:";
+
+        texto.textContent = datos.respuesta || "Sin respuesta.";
+
+        mensaje.appendChild(titulo);
+        mensaje.appendChild(texto);
+        historial.appendChild(mensaje);
+        document.querySelector("#pregunta").value = "";
+        historial.scrollTop = historial.scrollHeight;
+        
+    } catch (error) {
+        const mensaje = document.createElement("p");
+        mensaje.textContent = "Error: " + error.message;
+        historial.appendChild(mensaje);
+
+    } finally {
+        boton.disabled = false;
+        boton.textContent = "Preguntar";
+    }
+});
+</script></body>
+</html>
